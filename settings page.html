@@ -4,89 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="settings_page.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap JS and Popper.js (optional, for Bootstrap components that require JavaScript) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <title>Settings Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-    <link rel="stylesheet" href="style.css">
-    <style>
-        
-        body {
-            transition: background-color 0.5s, color 0.5s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 30vh;
-            margin: 0;
-           /* background: url('https://img.freepik.com/free-photo/abstract-transparent-green-leaves_23-2148239780.jpg') center/cover no-repeat;*/
-        }
-        *{
-            background-color: white;
-        }
-
-        h1 {
-            font-size: 5em;
-            font-weight: bold;
-            text-align: center;
-        }
-        i {
-            margin-left: 10px;
-        } 
-
-        .row {/*Defining here a class row to use for our div */
-            display: flex;
-            justify-content: space-around; 
-            width: 60%; 
-            margin-bottom: 20px; 
-        }
-
-        button, button1 {
-            background-color: #00080c; /* Set your desired button color */
-            color: #3122d4; /* Set text color */
-            padding: 30px 60px; /* Adjust padding as needed */
-            font-size: 1em;
-            border: none;
-            border-radius: 10px; /* Set border radius for rounded corners */
-            cursor: pointer;
-            margin-top: 10px;
-            margin-right: 10px;
-        }
-       
-
-        button:hover, button1:hover  {
-            background-color: #2980b9; /* Set hover color */
-        }
-
-        
-        
-    </style>
 </head>
-<body>
-    
 
-    <div class="bg-white dark:bg-black">
-        <header>
-            <h1>Settings<i class= "fas fa-cog"></i></h1>
-        </header>
-        <div class="row">
-            <button onclick="handleButtonClick()">Click me</button>
-            <button1 onclick="handleButtonClick()">Click meplease</button1>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3">
+                <div class="author-card-cover" style="background-image: url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 104 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;Current score : 104</a></div>
+                <div class="author-card-profile">
+                    <div class="author-card-avatar"><img src="https://media.licdn.com/dms/image/D5603AQGkKquRBRdgUQ/profile-displayphoto-shrink_800_800/0/1700612021157?e=1714608000&v=beta&t=jRJyBLzdLV03QUV2H2rld5ZCOJUbw7leFyP2xrgofi8" alt="Daniel Adams">
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg">William Desmarais</h5><span class="author-card-position">Joined March 02 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item" href="#">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">Manage friends</div>
+                            </div><span class="badge badge-secondary">6</span>
+                        </div>
+                    </a><a class="list-group-item active" href="#"><i class="fe-icon-user text-muted"></i>Profile Settings</a><a class="list-group-item" href="#"><i class="fe-icon-map-pin text-muted"></i>Community stats</a>
+                    <a class="list-group-item" href="https://www.bootdey.com/snippets/view/bs4-wishlist-profile-page" target="__blank">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fe-icon-heart mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">Past Activities</div>
+                            </div><span class="badge badge-secondary">3</span>
+                        </div>
+                    </a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fe-icon-tag mr-1 text-muted"></i>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                  </label>
+                                  <div class="d-inline-block font-weight-medium text-uppercase">Dark Mode</div>
+                            
+                        </div>
+                    
+                </nav>
+            </div>
         </div>
-        <span class= "switch">
-            <input type="checkbox" id="switcher">
-            <label for ="switcher"></label>
-        </span>
+        <!-- Profile Settings-->
+        <div class="col-lg-8 pb-5">
+            <form class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-fn">First Name</label>
+                        <input class="form-control" type="text" id="account-fn" value="Daniel" required="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-ln">Last Name</label>
+                        <input class="form-control" type="text" id="account-ln" value="Adams" required="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-email">E-mail Address</label>
+                        <input class="form-control" type="email" id="account-email" value="daniel.adams@example.com" disabled="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-phone">Phone Number</label>
+                        <input class="form-control" type="text" id="account-phone" value="+7 (805) 348 95 72" required="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-pass">New Password</label>
+                        <input class="form-control" type="password" id="account-pass">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-confirm-pass">Confirm Password</label>
+                        <input class="form-control" type="password" id="account-confirm-pass">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr class="mt-2 mb-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                        <div class="custom-control custom-checkbox d-block">
+                            <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
+                            <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
+                        </div>
+                        <button class="btn btn-style-1 btn-primary" type="button" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Update Profile</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-
-    
-
-
-
-    
-    <script>
-        function handleButtonClick() {
-            alert('Button clicked!'); // Replace with your desired action
-        }
-        
-    </script>
-</body>
-</html>
+</div>
