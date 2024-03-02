@@ -6,6 +6,7 @@
   <body>
     <h1>Welcome {{sub}}!</h1>
     <p>friends: {{friends}}</p>
+    <a href="{% url 'index' %}">index</a>
     <form action="{% url 'add_friend' %}" method="post">
       {% csrf_token %}
       <label for="friendName">Add Friend:</label>
