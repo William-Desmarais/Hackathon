@@ -4,3 +4,5 @@ from django.db import models
 class EasyUser(models.Model):
     name=models.CharField(max_length=255)
     friends=models.CharField(max_length=2550)
+    #goal_score(default)
+    #score
