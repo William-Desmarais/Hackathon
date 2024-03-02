@@ -13,5 +13,11 @@
       <input type="text" id="friendName" name="friendName" required />
       <button type="submit">Add Friend</button>
     </form>
+    <form action="{% url 'del_friend' %}" method="post">
+      {% csrf_token %}
+      <label for="friendName">Delete Friend:</label>
+      <input type="text" id="friendName" name="friendName" required />
+      <button type="submit">Delete Friend</button>
+    </form>
   </body>
 </html>
