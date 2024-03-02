@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Settings Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+        body {
+            transition: background-color 0.5s, color 0.5s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 30vh;
+            margin: 0;
+           /* background: url('https://img.freepik.com/free-photo/abstract-transparent-green-leaves_23-2148239780.jpg') center/cover no-repeat;*/
+        }
+        *{
+            background-color: white;
+        }
+
+        h1 {
+            font-size: 5em;
+            font-weight: bold;
+            text-align: center;
+        }
+        i {
+            margin-left: 10px;
+        } 
+
+        .row {/*Defining here a class row to use for our div */
+            display: flex;
+            justify-content: space-around; 
+            width: 60%; 
+            margin-bottom: 20px; 
+        }
+
+        button, button1 {
+            background-color: #00080c; /* Set your desired button color */
+            color: #3122d4; /* Set text color */
+            padding: 30px 60px; /* Adjust padding as needed */
+            font-size: 1em;
+            border: none;
+            border-radius: 10px; /* Set border radius for rounded corners */
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+       
+
+        button:hover, button1:hover  {
+            background-color: #2980b9; /* Set hover color */
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+    
+
+    <div class="bg-white dark:bg-black">
+        <header>
+            <h1>Settings<i class= "fas fa-cog"></i></h1>
+        </header>
+        <div class="row">
+            <button onclick="handleButtonClick()">Click me</button>
+            <button1 onclick="handleButtonClick()">Click meplease</button1>
+        </div>
+        <span class= "switch">
+            <input type="checkbox" id="switcher">
+            <label for ="switcher"></label>
+        </span>
+    </div>
+
+    
+
+
+
+    
+    <script>
+        function handleButtonClick() {
+            alert('Button clicked!'); // Replace with your desired action
+        }
+        
+    </script>
+</body>
+</html>
