@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Auth0 Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <h1>Welcome {{sub}}!</h1>
+    <p>friends: {{friends}}</p>
+    <a href="{% url 'index' %}">index</a>
+    <a href="{% url 'about' %}">about</a>
+    <p>friend list</p>
+    {% for friend in friends %}
+    <li>
+      {{ friend.name }} (Real Name: {{ friend.real_name }}) - Score: {{friend.score}}/{{ friend.goal_score }}
+      <form action="{% url 'del_friend' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="user_name" value="{{ friend.name }}" />
+        <button type="submit">unfriend with</button>
+      </form>
+    </li>
+    {% endfor %}
+
+    <div class="flex justify-between mb-1">
+        <span class="text-base font-medium text-blue-700 dark:text-white">Progress</span>
+        <span class="text-sm font-medium text-blue-700 dark:text-white">{{progress}}%</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ progress }}%"></div>
+      </div>
+    
+    <form action="{% url 'add_points' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">add points</button>
+    </form>
+    <form action="{% url 'clear_points' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">clear_points</button>
+    </form>
+    <p>points: {{score}}</p>
+    <p>goal:{{goal_score}}</p>
+    <form action="{% url 'set_goal' %}" method="post">
+      {% csrf_token %}
+      <label for="goal">goal:</label>
+      <input type="number" id="goal" name="goal" required />
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">set goal</button>
+    </form>
+    {% for user in users %}
+    <li>
+      {{ user.name }} (Real Name: {{ user.real_name }}) - Score: {{user.score}}/{{ user.goal_score }}
+      <form action="{% url 'add_friend' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="user_name" value="{{ user.name }}" />
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">friend with</button>
+      </form>
+    </li>
+    {% endfor %}
+  </body>
+</html>
