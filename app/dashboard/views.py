@@ -23,6 +23,11 @@ def get_user(request):
     
     friends_objects = []
 
+    if user.goal_score > 0:
+        progress = int((user.score / user.goal_score) * 100)
+    else:
+        progress = 0  # or some default value
+
     # Iterate over each name in the friends_list
     for name in friends_list:
         # Use filter to find users with a name that matches (case-insensitive)
@@ -30,7 +35,7 @@ def get_user(request):
         # Extend the friends_objects list with the matched users
         friends_objects.extend(matched_users)
     
-    return render(request,"dashboard.html",{"sub":token["userinfo"]["sub"],"friends":friends_objects,"score":user.score,"goal_score":user.goal_score,"users":users})
+    return render(request,"dashboard.html",{"sub":token["userinfo"]["sub"],"friends":friends_objects,"score":user.score,"goal_score":user.goal_score,"users":users,"progress":progress})
 
 '''
 def add_friend(request):
@@ -176,3 +181,6 @@ def del_friend(request):
     else:
         # If not a POST request, just show the form or redirect as needed
         return HttpResponse("Method not allowed", status=405)
+    
+def about(request):
+    return render(request,"ourTeam.html")
