@@ -8,6 +8,5 @@ urlpatterns=[
     path('add_points/', views.add_points, name='add_points'),
     path('clear_points/', views.clear_points, name='clear_points'),  
     path('set_goal/', views.set_goal, name='set_goal'), 
-    path('add_friend/', views.add_friend, name='add_friend'), 
     
 ]

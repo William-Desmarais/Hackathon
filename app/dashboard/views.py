@@ -32,6 +32,7 @@ def get_user(request):
     
     return render(request,"dashboard.html",{"sub":token["userinfo"]["sub"],"friends":friends_objects,"score":user.score,"goal_score":user.goal_score,"users":users})
 
+'''
 def add_friend(request):
     if request.method == 'POST':
         user_sub = request.session.get("user")["userinfo"]["sub"]
@@ -78,7 +79,7 @@ def del_friend(request):
     else:
         # If not a POST request, just show the form or redirect as needed
         return HttpResponse("Method not allowed", status=405)
-    
+'''    
 def add_points(request):
     if request.method == 'POST':
         user_sub = request.session.get("user")["userinfo"]["sub"]
@@ -145,6 +146,30 @@ def add_friend(request):
             friends_list.append(user_name)  # Remove the friend's name from the list
             user.friends = ','.join(friends_list)  # Join the list back into a string
             user.save()
+        
+        return redirect('/dashboard/user/')
+
+    else:
+        # If not a POST request, just show the form or redirect as needed
+        return HttpResponse("Method not allowed", status=405)
+    
+def del_friend(request):
+    if request.method == 'POST':
+        user_sub = request.session.get("user")["userinfo"]["sub"]
+        user_name = request.POST.get("user_name")
+
+        # Retrieve the user
+        user = EasyUser.objects.get(name=user_sub)
+        
+        friends_list = [friend.strip() for friend in user.friends.split(',')]
+        
+        if user_name in friends_list:
+            #user.friends += f",{new_friend}"
+            friends_list.remove(user_name)  # Remove the friend's name from the list
+            user.friends = ','.join(friends_list)  # Join the list back into a string
+            user.save()
+        else:
+            return HttpResponse("This should not happen, but Friend name don't exist, friendname: "+user_name, status=405)
         
         return redirect('/dashboard/user/')
 
