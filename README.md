@@ -1,3 +1,7 @@
+
+# Cool Project
+
+
 how to start develop and debug on this project:
 
 all the command below is for terminal on mac or linux, i'm not sure about windows, maybe install a bash.
@@ -18,3 +22,4 @@ pipenv shell
 python3 manage.py runserver
 ```
 (start running server on localhost, instruction will be shown on the terminal)
+
