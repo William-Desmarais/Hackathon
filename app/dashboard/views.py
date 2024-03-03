@@ -37,7 +37,7 @@ def get_user(request):
         # Extend the friends_objects list with the matched users
         friends_objects.extend(matched_users)
     
-    return render(request,"dashboard.html",{"sub":token["userinfo"]["sub"],"friends":friends_objects,"score":user.score,"goal_score":user.goal_score,"users":users,"progress":progress})
+    return render(request,"mainpage.html",{"sub":token["userinfo"]["sub"],"friends":friends_objects,"score":user.score,"goal_score":user.goal_score,"users":users,"progress":progress})
 
 '''
 def add_friend(request):
