@@ -20,7 +20,7 @@
     </style>
 </head>
 
-
+<a href="{% url 'get_user' %}">back to dashboard</a>
 <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
       <div class="max-w-2xl">
@@ -28,50 +28,45 @@
         <p class="mt-6 text-lg leading-8 text-gray-600">You are currently linked with 3 other friends </p>
       </div>
       <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+        {% for friend in friends %}
         <li class="my-6 space-y-6">
           <div class="flex items-center gap-x-6">
             <a href="https://www.linkedin.com/in/samdenlepcha/" target="_blank" class="btn-link">
             <img class="h-16 w-16 rounded-full" src="https://media.licdn.com/dms/image/C5603AQGVVhY-Y49EbA/profile-displayphoto-shrink_800_800/0/1592028390887?e=1714608000&v=beta&t=sdQiVehvpPf5CvkmmjJZ1NBFR0MxbVBTlyYDKcZOqsI" alt="">
           </a>
             <div>
-              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Samden Lepcha </h3>
+              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">{{ friend.name }} (Real Name: {{ friend.real_name }}) - Score: {{friend.score}}/{{ friend.goal_score }}</h3>
+              <form action="{% url 'del_friend' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="user_name" value="{{ friend.name }}" />
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">unfriend with</button>
+              </form>
               
             </div>
           </div>
-
-          <div class="flex items-center gap-x-6">
-            <a href="https://www.linkedin.com/in/qingyun-yang-b01831253/" target="_blank" class="btn-link">
-            <img class="h-16 w-16 rounded-full" src="https://media.licdn.com/dms/image/D4E03AQGTxI18Sl7l9g/profile-displayphoto-shrink_800_800/0/1691682162691?e=1714608000&v=beta&t=ay-Ryi8Iu5y4p18Z106rXFgq49sozZiz93DudRSA_r8" alt="">
-            </a>
-            <div>
-              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Qingyun Yang</h3>
-              
-            </div>
-          </div>
-          
         </li>
-        <li class="my-6 space-y-6">
-            
-            <div class="flex items-center gap-x-6">
-              <a href="https://www.linkedin.com/in/william-desmarais-288b502a0/" target="_blank" class="btn-link">
-              <img class="h-16 w-16 rounded-full" src="https://media.licdn.com/dms/image/D5603AQGkKquRBRdgUQ/profile-displayphoto-shrink_800_800/0/1700612021157?e=1714608000&v=beta&t=jRJyBLzdLV03QUV2H2rld5ZCOJUbw7leFyP2xrgofi8" alt="">
-            </a>
-  
-              <div>
-                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">William Desmarais</h3>
-                
-              </div>
-            </div>
-            <div class="flex items-center gap-x-6">
-              <a href="https://www.linkedin.com/in/tristanjroy/" target="_blank" class="btn-link">
-              <img class="h-16 w-16 rounded-full" src="https://media.licdn.com/dms/image/D5603AQFfgEejxddNTg/profile-displayphoto-shrink_400_400/0/1676600203198?e=1714608000&v=beta&t=FPFwgJTOky-wAlTv7ZD4iyECUZzpJFIQw3phvg3Wnko" alt="">
-              </a>
-              <div>
-                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Tristan Roy</h3>
-              </div>
-            </div>
-          </li>
-  
+        {% endfor %}
+
+        <h1>Find Users: </h1>
+    {% for user in users %}
+    <li class="my-6 space-y-6">
+      <div class="flex items-center gap-x-6">
+        <a href="https://www.linkedin.com/in/samdenlepcha/" target="_blank" class="btn-link">
+        <img class="h-16 w-16 rounded-full" src="https://media.licdn.com/dms/image/C5603AQGVVhY-Y49EbA/profile-displayphoto-shrink_800_800/0/1592028390887?e=1714608000&v=beta&t=sdQiVehvpPf5CvkmmjJZ1NBFR0MxbVBTlyYDKcZOqsI" alt="">
+      </a>
+       
+      </div>
+      <form action="{% url 'add_friend' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="user_name" value="{{ user.name }}" />
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">friend with</button>
+      </form>
+    </li>
+    
+      
+      
+
+    {% endfor %}
         
       </ul>
       <div class="xl:col-span-3">

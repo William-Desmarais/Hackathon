@@ -2,8 +2,7 @@
 import torch
 from pyzbar.pyzbar import decode
 from PIL import Image
-import argparse
-import json
+
 
 # Scan Barcode
 def scan_barcode(image_path):
@@ -35,34 +34,21 @@ def model_predict(img):
     model = torch.hub.load('../yolov5', 'custom', path='../yolov5/runs/train/exp8/weights/best.pt', source='local', force_reload=True)
 
     # Make Main Prediction
-    model_output = model(img)
+    model_output = model.predict(img, confidence=60, overlap=60)
 
-    results_json = model_output.pandas().xyxy[0].to_json(orient="records")
-    model_predictions = json.loads(results_json)
-
-    # Predictions and Save Output
-    #model_predictions = model_output.json()
-    #model_output.save("../images/prediction.jpg")
+    # Find Barcode
+    barcode_num = scan_barcode(img)
 
     # Calculate Scores
     score = 0
     points = {'redbull':50}
-    for prediction in model_predictions:
-        score += points[prediction['name']]
+    for prediction in model_predictions['predictions']:
+        score += points[prediction['class']]
 
     print("Your Current Score = ",score)
 
-    # # Find Barcode
-    # barcode_num = scan_barcode(img)
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Model Predictions')
-    parser.add_argument('img', type=str, help='Send image path to make predictions')
-    
-    args = parser.parse_args()
-
-    model_predict(args.img)
 
 
 

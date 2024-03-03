@@ -8,6 +8,8 @@ django = "*"
 authlib = "*"
 python-dotenv = "*"
 requests = "*"
+torch = "*"
+ultralytics = "*"
 
 [dev-packages]
 
