@@ -5,8 +5,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <h1>Welcome {{sub}}!</h1>
-    <a href="{% url 'get_user' %}">dashboard</a>
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Friend Management Page</h1>
+    <a href="{% url 'get_user' %}">back to dashboard</a>
     <h1>Friend List: </h1>
     {% for friend in friends %}
     <li>

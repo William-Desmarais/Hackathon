@@ -5,20 +5,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <h1>Welcome {{sub}}!</h1>
-    <p>friends: {{friends}}</p>
-    <a href="{% url 'index' %}">index</a>
-    <a href="{% url 'about' %}">about</a>
-    <a href="{% url 'setting' %}">setting</a>
-    <p>friend list</p>
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Welcome</h1>
+    <h1>{{sub}}</h1>
+
+    <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500"><a href="{% url 'index' %}">index</a></mark></h1>
+    <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500"><a href="{% url 'about' %}">about</a></mark></h1>
+    <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500"><a href="{% url 'setting' %}">setting</a></mark></h1>
+    
+    
+    <p class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-3xl">My friends</p>
     {% for friend in friends %}
     <li>
       {{ friend.name }} (Real Name: {{ friend.real_name }}) - Score: {{friend.score}}/{{ friend.goal_score }}
-      <form action="{% url 'del_friend' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="user_name" value="{{ friend.name }}" />
-        <button type="submit">unfriend with</button>
-      </form>
+      
     </li>
     {% endfor %}
 
@@ -46,15 +45,6 @@
       <input type="number" id="goal" name="goal" required />
       <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">set goal</button>
     </form>
-    {% for user in users %}
-    <li>
-      {{ user.name }} (Real Name: {{ user.real_name }}) - Score: {{user.score}}/{{ user.goal_score }}
-      <form action="{% url 'add_friend' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="user_name" value="{{ user.name }}" />
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">friend with</button>
-      </form>
-    </li>
-    {% endfor %}
+    
   </body>
 </html>
