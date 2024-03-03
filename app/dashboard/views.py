@@ -99,7 +99,8 @@ def add_points(request):
         user.score+=int(score)
         user.save()
         
-        return redirect('/dashboard/user/')
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)
 
     else:
         # If not a POST request, just show the form or redirect as needed
@@ -115,7 +116,8 @@ def clear_points(request):
         user.score=0
         user.save()
         
-        return redirect('/dashboard/user/')
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)
 
     else:
         # If not a POST request, just show the form or redirect as needed
@@ -132,7 +134,8 @@ def set_goal(request):
         user.goal_score=goal
         user.save()
         
-        return redirect('/dashboard/user/')
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)
 
     else:
         # If not a POST request, just show the form or redirect as needed
