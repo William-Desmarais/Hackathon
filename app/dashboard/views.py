@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse
 from dashboard.models import EasyUser
 import re
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def get_user(request):
@@ -151,8 +152,9 @@ def add_friend(request):
             friends_list.append(user_name)  # Remove the friend's name from the list
             user.friends = ','.join(friends_list)  # Join the list back into a string
             user.save()
-        
-        return redirect('/dashboard/user/')
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)
+        #return redirect('/dashboard/user/')
 
     else:
         # If not a POST request, just show the form or redirect as needed
@@ -175,8 +177,9 @@ def del_friend(request):
             user.save()
         else:
             return HttpResponse("This should not happen, but Friend name don't exist, friendname: "+user_name, status=405)
-        
-        return redirect('/dashboard/user/')
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)
+        #return redirect('/dashboard/user/')
 
     else:
         # If not a POST request, just show the form or redirect as needed
@@ -184,3 +187,33 @@ def del_friend(request):
     
 def about(request):
     return render(request,"ourTeam.html")
+
+def setting(request):
+    return render(request,"settings page.html")
+
+def friend(request):
+    token=request.session.get("user")
+
+    user_exists = EasyUser.objects.filter(name=token["userinfo"]["sub"]).exists()
+    if(user_exists):
+        user = EasyUser.objects.get(name=token["userinfo"]["sub"])
+
+    users = EasyUser.objects.all()
+
+    friends_list = [friend.strip() for friend in user.friends.split(',')]
+    
+    friends_objects = []
+
+    left_users=[]
+
+    # Iterate over each name in the friends_list
+    for name in friends_list:
+        # Use filter to find users with a name that matches (case-insensitive)
+        matched_users = EasyUser.objects.filter(name__iexact=name)
+        # Extend the friends_objects list with the matched users
+        friends_objects.extend(matched_users)
+        
+    for user in users:
+        if (user not in friends_objects):
+            left_users.append(user)
+    return render(request,"friends_management.html",{"user":user,"friends":friends_objects,"users":left_users})

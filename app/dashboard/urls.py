@@ -9,4 +9,6 @@ urlpatterns=[
     path('clear_points/', views.clear_points, name='clear_points'),  
     path('set_goal/', views.set_goal, name='set_goal'), 
     path('about_us/', views.about, name='about'), 
+    path('setting/', views.setting, name='setting'),
+    path('friend/', views.friend, name='friend'),  
 ]
