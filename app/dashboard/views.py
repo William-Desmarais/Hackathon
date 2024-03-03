@@ -231,3 +231,6 @@ def friend(request):
 
     numberOfFriends=len(friends_objects)
     return render(request,"ManageFriend.html",{"user":user,"friends":friends_objects,"users":left_users,"numberOfFriends":numberOfFriends})
+
+def camera(request):
+    return render(request,"camera.html")

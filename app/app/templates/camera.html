@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Feed</title>
+</head>
+<body>
+    <video id="camerafeed" autoplay controls></video>
+
+    <script>
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                document.getElementById('camerafeed').srcObject = stream;
+            })
+            .catch(function (error) {
+                console.log('Camera access error:', error);
+            });
+    </script>
+</body>
+</html>

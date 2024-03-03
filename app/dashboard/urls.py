@@ -11,4 +11,5 @@ urlpatterns=[
     path('about_us/', views.about, name='about'), 
     path('setting/', views.setting, name='setting'),
     path('friend/', views.friend, name='friend'),  
+    path('camera/', views.camera, name='camera'),  
 ]
