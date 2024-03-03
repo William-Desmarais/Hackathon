@@ -234,3 +234,22 @@ def friend(request):
 
 def camera(request):
     return render(request,"camera.html")
+
+def scan(request):
+    if request.method == 'POST':
+        user_sub = request.session.get("user")["userinfo"]["sub"]
+
+        myFile = request.POST.get("myFile")
+
+        # Retrieve the user
+        user = EasyUser.objects.get(name=user_sub)
+        
+        user.score+=10
+        user.save()
+        
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)
+
+    else:
+        # If not a POST request, just show the form or redirect as needed
+        return HttpResponse("Method not allowed", status=405)
