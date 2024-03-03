@@ -1,0 +1,14 @@
+names:
+- redbull
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: sustain
+  url: https://universe.roboflow.com/uottahack/sustain/dataset/1
+  version: 1
+  workspace: uottahack
+  
+# Data Locations relative to yolov5
+test: ../ml_inference/Sustain-1/test/images
+train: ../ml_inference/Sustain-1/train/images
+val: ../ml_inference/Sustain-1/valid/images
