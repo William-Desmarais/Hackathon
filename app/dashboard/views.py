@@ -91,10 +91,12 @@ def add_points(request):
     if request.method == 'POST':
         user_sub = request.session.get("user")["userinfo"]["sub"]
 
+        score = request.POST.get("score")
+
         # Retrieve the user
         user = EasyUser.objects.get(name=user_sub)
         
-        user.score+=1
+        user.score+=int(score)
         user.save()
         
         return redirect('/dashboard/user/')
@@ -223,4 +225,4 @@ def friend(request):
     for user in users:
         if (user not in friends_objects):
             left_users.append(user)
-    return render(request,"friends_management.html",{"user":user,"friends":friends_objects,"users":left_users})
+    return render(request,"ManageFriend.html",{"user":user,"friends":friends_objects,"users":left_users})
