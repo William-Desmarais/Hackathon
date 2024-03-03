@@ -5,3 +5,7 @@
 datasets/
 ml_inference/
 .venv/
+app/db.sqlite3
+yolov5/__pycache__/
+yolov5/utils/
+yolov5/models/__pycache__/
