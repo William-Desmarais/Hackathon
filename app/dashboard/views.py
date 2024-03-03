@@ -13,9 +13,10 @@ def get_user(request):
     if(user_exists):
         user = EasyUser.objects.get(name=token["userinfo"]["sub"])
         user.real_name=token["userinfo"]["nickname"]
+        user.email=token["userinfo"]["email"]
         user.save()
     else:
-        user = EasyUser(name=token["userinfo"]["sub"], friends='',real_name=token["userinfo"]["nickname"])
+        user = EasyUser(name=token["userinfo"]["sub"], friends='',real_name=token["userinfo"]["nickname"],email=token["userinfo"]["email"])
         user.save()
 
     users = EasyUser.objects.all()
@@ -189,7 +190,13 @@ def about(request):
     return render(request,"ourTeam.html")
 
 def setting(request):
-    return render(request,"settings page.html")
+    token=request.session.get("user")
+
+    user_exists = EasyUser.objects.filter(name=token["userinfo"]["sub"]).exists()
+    if(user_exists):
+        user = EasyUser.objects.get(name=token["userinfo"]["sub"])
+
+    return render(request,"settings page.html",{"user":user})
 
 def friend(request):
     token=request.session.get("user")

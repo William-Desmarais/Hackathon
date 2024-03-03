@@ -62,26 +62,26 @@
             <form class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="account-fn">First Name</label>
-                        <input class="form-control" type="text" id="account-fn" value="Daniel" required="">
+                        <label for="account-fn">Name</label>
+                        <input class="form-control" type="text" id="account-fn" value="{{user.real_name}}" required="">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="account-ln">Last Name</label>
-                        <input class="form-control" type="text" id="account-ln" value="Adams" required="">
+                        <label for="account-ln">-</label>
+                        <input class="form-control" type="text" id="account-ln" value="" required="">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="account-email">E-mail Address</label>
-                        <input class="form-control" type="email" id="account-email" value="daniel.adams@example.com" disabled="">
+                        <input class="form-control" type="email" id="account-email" value="{{user.email}}" disabled="">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="account-phone">Phone Number</label>
-                        <input class="form-control" type="text" id="account-phone" value="+7 (805) 348 95 72" required="">
+                        <input class="form-control" type="text" id="account-phone" value="-" required="">
                     </div>
                 </div>
                 <div class="col-md-6">
