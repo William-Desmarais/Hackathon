@@ -225,4 +225,6 @@ def friend(request):
     for user in users:
         if (user not in friends_objects):
             left_users.append(user)
-    return render(request,"ManageFriend.html",{"user":user,"friends":friends_objects,"users":left_users})
+
+    numberOfFriends=len(friends_objects)
+    return render(request,"ManageFriend.html",{"user":user,"friends":friends_objects,"users":left_users,"numberOfFriends":numberOfFriends})

@@ -1,12 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
     <title>Settings Page</title>
 </head>
-
+<header class="header">
+  <a href="{% url 'get_user' %}" class="logo">Sustain<img src="https://i.postimg.cc/bJvhrXPv/logo.png" id="logo"></a>
+  <input type="checkbox" id="check">
+  <label for="check" class="icons">
+      <i class="fa-solid fa-bars" id="Waffle"></i>
+      <i class="fa-solid fa-x" id="X"></i>
+  </label>
+  <nav class="navigation">
+      <a href="{% url 'index' %}" style="--i:0;">User Change</a>
+      <a href="{% url 'friend' %}" style="--i:1;">Friends</a>
+      <a href="{% url 'about' %}" style="--i:2;">About Us</a>
+      <a href="{% url 'setting' %}" style="--i:3;">Settings</a>
+  </nav>
+</header> 
 <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
       <div class="max-w-2xl">

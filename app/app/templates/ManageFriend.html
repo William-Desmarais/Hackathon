@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
     <title>Manage Friend Page</title>
     <style>
         
@@ -20,12 +22,25 @@
     </style>
 </head>
 
-<a href="{% url 'get_user' %}">back to dashboard</a>
+<header class="header">
+  <a href="{% url 'get_user' %}" class="logo">Sustain<img src="https://i.postimg.cc/bJvhrXPv/logo.png" id="logo"></a>
+  <input type="checkbox" id="check">
+  <label for="check" class="icons">
+      <i class="fa-solid fa-bars" id="Waffle"></i>
+      <i class="fa-solid fa-x" id="X"></i>
+  </label>
+  <nav class="navigation">
+      <a href="{% url 'index' %}" style="--i:0;">User Change</a>
+      <a href="{% url 'friend' %}" style="--i:1;">Friends</a>
+      <a href="{% url 'about' %}" style="--i:2;">About Us</a>
+      <a href="{% url 'setting' %}" style="--i:3;">Settings</a>
+  </nav>
+</header> 
 <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
       <div class="max-w-2xl">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Your Friend list</h2>
-        <p class="mt-6 text-lg leading-8 text-gray-600">You are currently linked with 3 other friends </p>
+        <p class="mt-6 text-lg leading-8 text-gray-600">You are currently linked with {{numberOfFriends}} other friends </p>
       </div>
       <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
         {% for friend in friends %}
@@ -35,7 +50,7 @@
             <img class="h-16 w-16 rounded-full" src="https://media.licdn.com/dms/image/C5603AQGVVhY-Y49EbA/profile-displayphoto-shrink_800_800/0/1592028390887?e=1714608000&v=beta&t=sdQiVehvpPf5CvkmmjJZ1NBFR0MxbVBTlyYDKcZOqsI" alt="">
           </a>
             <div>
-              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">{{ friend.name }} (Real Name: {{ friend.real_name }}) - Score: {{friend.score}}/{{ friend.goal_score }}</h3>
+              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">{{ friend.name }} (Nick Name: {{ friend.real_name }}) - Score: {{friend.score}}/{{ friend.goal_score }}</h3>
               <form action="{% url 'del_friend' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="user_name" value="{{ friend.name }}" />
@@ -47,7 +62,12 @@
         </li>
         {% endfor %}
 
-        <h1>Find Users: </h1>
+        
+  
+        
+      </ul>
+
+      <h1>Find Users: </h1>
     {% for user in users %}
     <li class="my-6 space-y-6">
       <div class="flex items-center gap-x-6">
@@ -56,19 +76,19 @@
       </a>
        
       </div>
+      <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">{{ user.name }} (Nick Name: {{ user.real_name }}) - Score: {{user.score}}/{{ user.goal_score }}</h3>
       <form action="{% url 'add_friend' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="user_name" value="{{ user.name }}" />
         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">friend with</button>
       </form>
     </li>
+
     
       
       
 
     {% endfor %}
-        
-      </ul>
       <div class="xl:col-span-3">
         
         <div class="button-container">
